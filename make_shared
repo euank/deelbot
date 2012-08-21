@@ -1,0 +1,9 @@
+#!/bin/bash
+gcc -g -fPIC -c events.c -I include
+gcc -g -shared -o events.so events.o
+cd modules
+gcc -g -fPIC -c *.c -I ../include/
+for file in *.o; do
+   gcc -g -shared -o `basename $file .o`.so $file ;
+done
+
